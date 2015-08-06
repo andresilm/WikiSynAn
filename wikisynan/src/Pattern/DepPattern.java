@@ -20,7 +20,7 @@ public class DepPattern {
 
 		String[] split2 = split1[1].split("\\,");
 
-		String govData[] = parseNode(split2[0].substring(1, split2[0].length() - 1), GOV);
+		String govData[] = parseNode(split2[0], GOV);
 		setGovIsVar(govData[0] == ""); // isVar ==> gov == null && govPOS !=
 										// null
 		
@@ -46,12 +46,13 @@ public class DepPattern {
 			nodeData = splitNode;
 
 		} else {// POS tag only => is var
+		//	System.out.println(node);
 			nodeData[1] = node;// POS tag
 			nodeData[0] = "";
 
-			if (nodeData[1].startsWith("<") && nodeData[1].endsWith(">")) {
+			if (node.startsWith("<") && node.endsWith(">")) {
 
-				nodeData[1] = nodeData[1].substring(1, getDep().length() - 2);
+				nodeData[1] = node.substring(1, node.length() - 1);
 
 				marked = nodeType;
 			}
@@ -95,7 +96,7 @@ public class DepPattern {
 	public String toString() {
 		return getReln() + "(" + ((!getGov().equals("")) ? (getGov() + "/") : "") + ((marked == GOV) ? "<" : "") + getGovPOS()
 				+ ((marked == GOV) ? ">" : "") + "," + ((!getDep().equals("")) ? (getDep() + "/") : "")
-				+ ((marked == DEP) ? "<" : "") + getDepPOS() + ((marked == DEP) ? "<" : "") + ")";
+				+ ((marked == DEP) ? "<" : "") + getDepPOS() + ((marked == DEP) ? ">" : "") + ")";
 	}
 
 	String getReln() {

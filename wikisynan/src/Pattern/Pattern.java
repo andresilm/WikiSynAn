@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -15,13 +16,23 @@ public class Pattern {
 
 	String treeId;
 
-	Pattern(String[] depPatListtStr, String treeId) {
+	public Pattern(String[] depPatListtStr, String treeId) {
 		this.treeId = treeId;
 		depPatterns = new ArrayList();
 
 		for (String depPatternStr : depPatListtStr) {
 			if (!depPatternStr.equals(""))
 				depPatterns.add(new DepPattern(depPatternStr));
+		}
+
+	}
+	
+	public Pattern(DepPattern[] depPatList, String treeId) {
+		this.treeId = treeId;
+		depPatterns = new ArrayList();
+
+		for (DepPattern depPatternStr : depPatList) {
+				depPatterns.add(depPatternStr);
 		}
 
 	}
@@ -36,7 +47,9 @@ public class Pattern {
 
 		for (DepPattern depPattern : depPatterns) {
 			for (Dependency dep : deps) {
+				System.err.println("Evaluating pattern " + depPattern.toString() + " with dep " + dep.toString());
 				if (dep.matchesWithDepPattern(depPattern)) {
+					System.err.println("Matches!");
 					matches.get(depPattern).add(dep);
 				}
 			}

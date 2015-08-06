@@ -40,7 +40,7 @@ public class Dependency {
 	        if (tag != null && !tag.equals("")) {
 	            if (tag.equals("NNP") || tag.equals("NNS") || tag.equals("NNPS") || tag.equals("PRP") || tag.equals("WP") || tag.equals("NN") || tag.equals("NP")) {
 	                norm = "N";
-	            } else if (tag.equals("VBZ") || tag.equals("VBD") || tag.equals("VBN") || tag.equals("VBP") || tag.equals("VBG")) {
+	            } else if (tag.equals("VB") || tag.equals("VBZ") || tag.equals("VBD") || tag.equals("VBN") || tag.equals("VBP") || tag.equals("VBG")) {
 	                norm = "V";
 	            } else {
 	                norm = tag;
