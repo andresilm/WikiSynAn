@@ -12,6 +12,9 @@ public class Dependency {
 	private String govPOS;
 	private String depPOS;
 	
+	private int govIndex;
+	private int depIndex;
+	
 	public Dependency(String depStr) {
 		String[] split1 = depStr.split("\\(");
 		setReln(split1[0]);
@@ -48,8 +51,10 @@ public class Dependency {
 	        }
 	        return norm;		
 	}
-	public static String lemmatize(String word) {
-		return word;
+	private String lemmatize(String word) {
+		String[] indexSep = word.split("\\-");
+		this.setGovIndex(Integer.valueOf(indexSep[1]));
+		return indexSep[0];
 		
 	}
 
@@ -102,5 +107,21 @@ public class Dependency {
 	public boolean matchesWithDepPattern(DepPattern deps) {
 		return deps.matchesWithDependency(this);
 		
+	}
+
+	public int getGovIndex() {
+		return govIndex;
+	}
+
+	private void setGovIndex(int govIndex) {
+		this.govIndex = govIndex;
+	}
+
+	public int getDepIndex() {
+		return depIndex;
+	}
+
+	private void setDepIndex(int depIndex) {
+		this.depIndex = depIndex;
 	}
 }

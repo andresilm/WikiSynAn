@@ -17,6 +17,8 @@ public class Pattern {
 	List<DepPattern> depPatterns;
 
 	String treeId;
+	String markedWord = "";
+	int markedIndex = -1;
 
 	public Pattern(String[] depPatListtStr, String treeId) {
 		this.treeId = treeId;
@@ -49,9 +51,9 @@ public class Pattern {
 
 		for (DepPattern depPattern : depPatterns) {
 			for (Dependency dep : deps) {
-				System.err.println("Evaluating pattern " + depPattern.toString() + " with dep " + dep.toString());
+				
 				if (dep.matchesWithDepPattern(depPattern)) {
-					System.err.println("Matches!");
+				
 					matches.get(depPattern).add(dep);
 				}
 			}
@@ -66,27 +68,32 @@ public class Pattern {
 			if (dep.isEmpty())
 				return false;
 			else if (dep.size() > 1) {
-				System.err.println("CAUTION: more than one dependency matched. Fix code to handle this!.");
+				
 			}
 			else {
-				if (key.marked == DepPattern.GOV)
+				if (key.marked == DepPattern.GOV) {
 					diffMarks.add(dep.get(0).getGov());
+					this.markedWord = dep.get(0).getGov();
+					this.markedIndex = dep.get(0).getGovIndex();
+				}
 				else if (key.marked == DepPattern.DEP) {
 					diffMarks.add(dep.get(0).getDep());
+					this.markedWord = dep.get(0).getDep();
+					this.markedIndex = dep.get(0).getDepIndex();
 				}
 			}
 		}
 		
 		if (diffMarks.size() > 1)// more than a word marked with <> sounds bad!
 			return false;
-
+	
 	
 
 		return ret;
 	}
 
-	public String getMarkedWord() {
-		return "";
+	public String getAnnotation() {
+		return "["+markedWord + "-" +  this.markedIndex + "|" + treeId + "]";
 	}
 
 }

@@ -18,12 +18,12 @@ public class Tests {
 		DepPattern depp5 = new DepPattern("prep-on(<V>,N)");
 		
 		
-		Dependency dep1 = new Dependency("nsubj(astronaut/NN,Armstrong/NP)");
-		Dependency dep2 = new Dependency("cop(astronaut/NN,was/VBD)");
+		Dependency dep1 = new Dependency("nsubj(astronaut-3/NN,Armstrong-1/NP)");
+		Dependency dep2 = new Dependency("cop(astronaut-3/NN,was-2/VBD)");
 		
-		Dependency dep3 = new Dependency("vmod(person/NN,walk/VB)");
-		Dependency dep4 = new Dependency("aux(walk/VB, to/TO)");
-		Dependency dep5 = new Dependency("prep-on(walk/VB,moon/NNP)");
+		Dependency dep3 = new Dependency("vmod(person-5/NN,walk-7/VB)");//ajustar depdenency para que parsee el indice
+		Dependency dep4 = new Dependency("aux(walk-7/VB, to-6/TO)");
+		Dependency dep5 = new Dependency("prep-on(walk-7/VB,moon-8/NNP)");
 		
 		List<Dependency> deps = new ArrayList();
 		deps.add(dep1);
@@ -57,7 +57,10 @@ public class Tests {
 		Pattern p2 = new Pattern(depList2,"beta-n0Vpn1");
 		
 		System.out.println(p1.matchesWithParsing(deps));
+		System.out.println(p1.getAnnotation());
 		System.out.println(p2.matchesWithParsing(deps));
+		System.out.println(p2.getAnnotation());
+		System.out.println("=== Test 3 ===");
 		
 		
 	}
