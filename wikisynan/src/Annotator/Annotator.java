@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import DependencyParser.StanfordParserWrapper;
 import Pattern.Dependency;
 import Pattern.Pattern;
 import Pattern.PatternMatcher;
-import Util.Parser;
 import edu.stanford.nlp.trees.TypedDependency;
 
 public class Annotator {
-	private Parser parser;
+	private StanfordParserWrapper parser;
 	private PatternMatcher patternMatcher;
 	
 
-	Annotator(Parser parser,PatternMatcher patternMatcher) {
+	Annotator(StanfordParserWrapper parser,PatternMatcher patternMatcher) {
 		this.parser = parser;
 		this.patternMatcher = patternMatcher;
 		

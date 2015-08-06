@@ -1,4 +1,4 @@
-package Util;
+package DependencyParser;
 
 // Note : The command line alternative is
 
@@ -41,7 +41,7 @@ import java.util.logging.Logger;
  -conllx dependencies printed out in CoNLL X (CoNLL 2006) format
  */
 // Mix of code from http://stackoverflow.com/questions/19429106/how-can-i-integrate-stanford-parser-software-in-my-java-program and http://stackoverflow.com/questions/20813541/parse-sentence-stanford-parser-by-passing-string-not-an-array-of-strings
-public class Parser {
+public class StanfordParserWrapper {
 
     static private TokenizerFactory<CoreLabel> tokenizerFactory;
     static private LexicalizedParser parser;
@@ -69,7 +69,7 @@ public class Parser {
     private String sentence;
     private Collection<TypedDependency> allDependencies;
 
-    public Parser() {
+    public StanfordParserWrapper() {
         tokenizerFactory = PTBTokenizer.factory(new CoreLabelTokenFactory(), "invertible=true");
 
     }
