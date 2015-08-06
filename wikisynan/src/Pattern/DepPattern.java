@@ -11,8 +11,8 @@ public class DepPattern {
 	private String depPOS;
 	int marked;
 
-	private final int GOV = 0;
-	private final int DEP = 1;
+	final static int GOV = 0;
+	final static int DEP = 1;
 
 	public DepPattern(String pattern) {
 		String[] split1 = pattern.split("\\(");

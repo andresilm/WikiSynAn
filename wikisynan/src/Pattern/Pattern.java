@@ -7,9 +7,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Pattern {
 	List<DepPattern> depPatterns;
@@ -54,15 +56,31 @@ public class Pattern {
 				}
 			}
 		}
-
-		for (List<Dependency> dep : matches.values()) {
+		
+		
+		Set<String> diffMarks = new HashSet();
+		
+		for (DepPattern key : matches.keySet()) {
+			List<Dependency> dep = matches.get(key);
+			
 			if (dep.isEmpty())
 				return false;
+			else if (dep.size() > 1) {
+				System.err.println("CAUTION: more than one dependency matched. Fix code to handle this!.");
+			}
+			else {
+				if (key.marked == DepPattern.GOV)
+					diffMarks.add(dep.get(0).getGov());
+				else if (key.marked == DepPattern.DEP) {
+					diffMarks.add(dep.get(0).getDep());
+				}
+			}
 		}
+		
+		if (diffMarks.size() > 1)// more than a word marked with <> sounds bad!
+			return false;
 
-		// List<DepPattern> byMarks = new ArrayList<DepPattern>();
-
-		// if for all patterns there is at least a dependency matched
+	
 
 		return ret;
 	}
