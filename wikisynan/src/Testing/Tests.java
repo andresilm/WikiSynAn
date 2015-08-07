@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import Annotator.AnnotationResult;
+import Annotator.Annotation;
 import Annotator.Annotator;
 import DependencyParser.StanfordParserWrapper;
 import Pattern.DepPattern;
@@ -20,18 +20,12 @@ public class Tests {
 
 		DepPattern depp3 = new DepPattern("vmod(N,<V>)");
 		DepPattern depp4 = new DepPattern("aux(<V>, to/TO)");
-		DepPattern depp5 = new DepPattern("prep-on(<V>,N)");
+		DepPattern depp5 = new DepPattern("prep_on(<V>,N)");
 
 		Dependency dep1 = new Dependency("nsubj(astronaut-3/NN,Armstrong-1/NP)");
 		Dependency dep2 = new Dependency("cop(astronaut-3/NN,was-2/VBD)");
 
-		Dependency dep3 = new Dependency("vmod(person-5/NN,walk-7/VB)");// ajustar
-																		// depdenency
-																		// para
-																		// que
-																		// parsee
-																		// el
-																		// indice
+		Dependency dep3 = new Dependency("vmod(person-5/NN,walk-7/VB)");
 		Dependency dep4 = new Dependency("aux(walk-7/VB,to-6/TO)");
 		Dependency dep5 = new Dependency("prep-on(walk-7/VB,moon-8/NNP)");
 
@@ -66,24 +60,23 @@ public class Tests {
 		Pattern p2 = new Pattern(depList2, "beta-n0Vpn1");
 
 		System.out.println(p1.matchesWithParsing(deps));
-		System.out.println(p1.getAnnotation());
+
 		System.out.println(p2.matchesWithParsing(deps));
-		System.out.println(p2.getAnnotation());
 
 		System.out.println("=== Test 3 ===");
 
 		PatternMatcher pMatcher = new PatternMatcher();
-		//pMatcher.loadFromFile("resources/patterns.txt");
-		pMatcher.addPattern(p1);
-		pMatcher.addPattern(p2);
-		Annotator annotator = new Annotator(new StanfordParserWrapper(), pMatcher);
+		pMatcher.loadFromFile("resources/patterns.txt");
+		// pMatcher.addPattern(p1);
+		// pMatcher.addPattern(p2);
+		Annotator annotator = new Annotator(pMatcher);
 
-		AnnotationResult result = annotator.annotateSentence(
+		Annotation result = annotator.annotateSentence(
 				"Neil Alden Armstrong (August 5, 1930 – August 25, 2012) was an American astronaut and the first person to walk on the Moon.");
 		if (result != null)
-		System.out.print(result.getAnnotatedSentence());
+			System.out.print(result.getAnnotatedSentence());
 		else
 			System.out.print("No result returned from Annotator");
-		
+
 	}
 }

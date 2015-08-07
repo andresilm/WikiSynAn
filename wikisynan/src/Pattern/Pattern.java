@@ -87,14 +87,11 @@ public class Pattern {
 		if (diffMarks.size() > 1)// more than a word marked with <> sounds bad!
 			return false;
 	
-	System.err.println(this.getAnnotation());
+
 
 		return ret;
 	}
 
-	public String getAnnotation() {
-		return "["+getMarkedWord() + "-" +  this.getMarkedIndex() + "|" + getTreeId() + "]";
-	}
 
 	public String getMarkedWord() {
 		return markedWord;
@@ -108,7 +105,7 @@ public class Pattern {
 		return markedIndex;
 	}
 
-	void setMarkedIndex(int markedIndex) {
+	public void setMarkedIndex(int markedIndex) {
 		this.markedIndex = markedIndex;
 	}
 	

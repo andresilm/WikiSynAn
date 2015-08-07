@@ -16,9 +16,11 @@ public class PatternMatcher {
 	public List<Pattern> findMatchForParsing(List<Dependency> deps) {
 		List<Pattern> matches = new ArrayList();
 		for (Pattern p : patternList) {
-			System.err.println("Parse pattern: "+p.toString());
-			if (p.matchesWithParsing(deps))
+			
+			if (p.matchesWithParsing(deps)) {
+				
 				matches.add(p);
+			}
 		}
 		
 		return matches;

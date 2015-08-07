@@ -14,53 +14,37 @@ public class Annotator {
 	private StanfordParserWrapper parser;
 	private PatternMatcher patternMatcher;
 
-	public Annotator(StanfordParserWrapper parser, PatternMatcher patternMatcher) {
-		this.parser = parser;
+	public Annotator(PatternMatcher patternMatcher) {
+		this.parser = new StanfordParserWrapper();
 		this.patternMatcher = patternMatcher;
 
 	}
 
-	public AnnotationResult annotateSentence(String sentence) {
-		AnnotationResult result = new AnnotationResult();
-		result.setOrigSentence(sentence);
+	public Annotation annotateSentence(String sentence) {
+		Annotation result = new Annotation(sentence);
 
 		parser.analyzeSentence(sentence);
 
 		List<Dependency> myDeps = new ArrayList<Dependency>();
 		Collection<TypedDependency> deps = parser.getAllDependencies();
 
+		
 		for (TypedDependency dep : deps) {
 			myDeps.add(new Dependency(dep));
-			// System.err.println("Dep: " + dep.toString());
+			
 		}
 
 		List<Pattern> matches = patternMatcher.findMatchForParsing(myDeps);
 		if (!matches.isEmpty()) {
-			if (matches.size() == 1) {
-				Pattern patternMatched = matches.get(0);
-				result.setWord(patternMatched.getMarkedWord());
-				int index = patternMatched.getMarkedIndex();
-				System.err.println("Word: " + patternMatched.getMarkedWord() + " ; Index: " + index);
-				String[] splitSent = sentence.split(" ");
-
-				String resSent = "";
-				for (int i = 0; i < splitSent.length; ++i) {
-					if (i == index)
-						resSent += "[" + patternMatched.getMarkedWord() + "/" + patternMatched.getTreeId() + "]";
-					else
-						resSent += splitSent[i];
-					if (i < splitSent.length - 1)
-						resSent += " ";
-					else
-						resSent += ".";
+			for (Pattern patternMatched : matches) {
+				result.addAnnotation(patternMatched.getMarkedWord(), patternMatched.getMarkedIndex(), patternMatched.getTreeId());
+				
 				}
-
-				result.setResultSentence(resSent);
-			} else {
-				result = null;
-			}
+			
+			result.applyToSentence();
+			
 		} else {
-			System.err.println("SURPRISE! more than one pattern matched...");
+			result = null;
 		}
 
 		return result;
