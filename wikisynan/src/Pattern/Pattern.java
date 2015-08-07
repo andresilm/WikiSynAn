@@ -17,8 +17,8 @@ public class Pattern {
 	List<DepPattern> depPatterns;
 
 	String treeId;
-	String markedWord = "";
-	int markedIndex = -1;
+	private String markedWord = "";
+	private int markedIndex = -1;
 
 	public Pattern(String[] depPatListtStr, String treeId) {
 		this.treeId = treeId;
@@ -73,27 +73,52 @@ public class Pattern {
 			else {
 				if (key.marked == DepPattern.GOV) {
 					diffMarks.add(dep.get(0).getGov());
-					this.markedWord = dep.get(0).getGov();
-					this.markedIndex = dep.get(0).getGovIndex();
+					this.setMarkedWord(dep.get(0).getGov());
+					this.setMarkedIndex(dep.get(0).getGovIndex());
 				}
 				else if (key.marked == DepPattern.DEP) {
 					diffMarks.add(dep.get(0).getDep());
-					this.markedWord = dep.get(0).getDep();
-					this.markedIndex = dep.get(0).getDepIndex();
+					this.setMarkedWord(dep.get(0).getDep());
+					this.setMarkedIndex(dep.get(0).getDepIndex());
 				}
 			}
 		}
 		
-		if (diffMarks.size() > 1)// more than a word marked with <> sounds bad!
+		/*if (diffMarks.size() > 1)// more than a word marked with <> sounds bad!
 			return false;
-	
+	*/
 	
 
 		return ret;
 	}
 
 	public String getAnnotation() {
-		return "["+markedWord + "-" +  this.markedIndex + "|" + treeId + "]";
+		return "["+getMarkedWord() + "-" +  this.getMarkedIndex() + "|" + treeId + "]";
+	}
+
+	public String getMarkedWord() {
+		return markedWord;
+	}
+
+	public void setMarkedWord(String markedWord) {
+		this.markedWord = markedWord;
+	}
+
+	public int getMarkedIndex() {
+		return markedIndex;
+	}
+
+	void setMarkedIndex(int markedIndex) {
+		this.markedIndex = markedIndex;
+	}
+	
+	@Override
+	public String toString() {
+		String ret = "";
+		for (DepPattern d: this.depPatterns) {
+			ret += d + ";";
+		}
+		return ret;
 	}
 
 }

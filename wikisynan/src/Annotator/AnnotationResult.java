@@ -2,10 +2,14 @@ package Annotator;
 
 public class AnnotationResult {
 	private String origSentence;
-	private String resultSentence;
+	private String annotatedSentence;
 	private String wordAnnotated;
 	private int index;
 	private String treeName;
+	
+	public AnnotationResult() {
+		
+	}
 	
 	String getWord() {
 		return getWordAnnotated();
@@ -31,11 +35,11 @@ public class AnnotationResult {
 	void setOrigSentence(String origSentence) {
 		this.origSentence = origSentence;
 	}
-	String getResultSentence() {
-		return resultSentence;
+	public String getResultSentence() {
+		return annotatedSentence;
 	}
 	void setResultSentence(String resultSentence) {
-		this.resultSentence = resultSentence;
+		this.annotatedSentence = resultSentence;
 	}
 	private String getWordAnnotated() {
 		return wordAnnotated;

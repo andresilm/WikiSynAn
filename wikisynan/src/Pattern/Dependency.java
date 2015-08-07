@@ -36,6 +36,8 @@ public class Dependency {
 		dep = typDep.dep().originalText();
 		govPOS = typDep.gov().tag();
 		depPOS = typDep.dep().tag();
+		govIndex = typDep.gov().index();
+		depIndex = typDep.dep().index();
 	}
 	
 	public static String normalizePOS(String tag) {
