@@ -30,7 +30,7 @@ public class Annotation {
 
 	
 		for (int i = 0; i < splitSent.length; ++i) {
-			if (splitSent[i].contains(",") || splitSent[i].contains("-") || splitSent[i].contains("(")
+			if (splitSent[i].contains(",") || splitSent[i].contains(";") || splitSent[i].contains("-") || splitSent[i].contains("(")
 					|| splitSent[i].contains(")") || splitSent[i].contains("{") || splitSent[i].contains("}")
 					|| splitSent[i].contains("[") || splitSent[i].contains("]"))
 				++index_offset;

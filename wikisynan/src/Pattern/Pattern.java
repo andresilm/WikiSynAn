@@ -84,10 +84,10 @@ public class Pattern {
 			}
 		}
 		
-		if (diffMarks.size() > 1)// more than a word marked with <> sounds bad!
+		if (diffMarks.size() > 1) {// more than a word marked with <> sounds bad!
+			System.err.println("More than a word marked with <> !!!");
 			return false;
-	
-
+		}
 
 		return ret;
 	}
