@@ -16,12 +16,12 @@ import java.util.Set;
 public class Pattern {
 	List<DepPattern> depPatterns;
 
-	String treeId;
+	private String treeId;
 	private String markedWord = "";
 	private int markedIndex = -1;
 
 	public Pattern(String[] depPatListtStr, String treeId) {
-		this.treeId = treeId;
+		this.setTreeId(treeId);
 		depPatterns = new ArrayList();
 
 		for (String depPatternStr : depPatListtStr) {
@@ -32,7 +32,7 @@ public class Pattern {
 	}
 	
 	public Pattern(DepPattern[] depPatList, String treeId) {
-		this.treeId = treeId;
+		this.setTreeId(treeId);
 		depPatterns = new ArrayList();
 
 		for (DepPattern depPatternStr : depPatList) {
@@ -84,16 +84,16 @@ public class Pattern {
 			}
 		}
 		
-		/*if (diffMarks.size() > 1)// more than a word marked with <> sounds bad!
+		if (diffMarks.size() > 1)// more than a word marked with <> sounds bad!
 			return false;
-	*/
 	
+	System.err.println(this.getAnnotation());
 
 		return ret;
 	}
 
 	public String getAnnotation() {
-		return "["+getMarkedWord() + "-" +  this.getMarkedIndex() + "|" + treeId + "]";
+		return "["+getMarkedWord() + "-" +  this.getMarkedIndex() + "|" + getTreeId() + "]";
 	}
 
 	public String getMarkedWord() {
@@ -119,6 +119,14 @@ public class Pattern {
 			ret += d + ";";
 		}
 		return ret;
+	}
+
+	public String getTreeId() {
+		return treeId;
+	}
+
+	void setTreeId(String treeId) {
+		this.treeId = treeId;
 	}
 
 }

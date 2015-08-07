@@ -32,7 +32,7 @@ public class Tests {
 																		// parsee
 																		// el
 																		// indice
-		Dependency dep4 = new Dependency("aux(walk-7/VB, to-6/TO)");
+		Dependency dep4 = new Dependency("aux(walk-7/VB,to-6/TO)");
 		Dependency dep5 = new Dependency("prep-on(walk-7/VB,moon-8/NNP)");
 
 		List<Dependency> deps = new ArrayList();
@@ -73,13 +73,15 @@ public class Tests {
 		System.out.println("=== Test 3 ===");
 
 		PatternMatcher pMatcher = new PatternMatcher();
-		pMatcher.loadFromFile("resources/patterns.txt");
+		//pMatcher.loadFromFile("resources/patterns.txt");
+		pMatcher.addPattern(p1);
+		pMatcher.addPattern(p2);
 		Annotator annotator = new Annotator(new StanfordParserWrapper(), pMatcher);
 
 		AnnotationResult result = annotator.annotateSentence(
 				"Neil Alden Armstrong (August 5, 1930 – August 25, 2012) was an American astronaut and the first person to walk on the Moon.");
 		if (result != null)
-		System.out.print(result.getResultSentence());
+		System.out.print(result.getAnnotatedSentence());
 		else
 			System.out.print("No result returned from Annotator");
 		

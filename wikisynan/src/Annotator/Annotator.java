@@ -31,24 +31,36 @@ public class Annotator {
 
 		for (TypedDependency dep : deps) {
 			myDeps.add(new Dependency(dep));
-		//	System.err.println("Dep: " + dep.toString());
+			// System.err.println("Dep: " + dep.toString());
 		}
 
-		Pattern patternMatched = patternMatcher.findMatchForParsing(myDeps);
-		if (patternMatched != null) {
-			result.setWord(patternMatched.getMarkedWord());
-			int index = patternMatched.getMarkedIndex();
-			String[] splitSent = sentence.split("\\ ");
-			splitSent[index] = patternMatched.getMarkedWord();
+		List<Pattern> matches = patternMatcher.findMatchForParsing(myDeps);
+		if (!matches.isEmpty()) {
+			if (matches.size() == 1) {
+				Pattern patternMatched = matches.get(0);
+				result.setWord(patternMatched.getMarkedWord());
+				int index = patternMatched.getMarkedIndex();
+				System.err.println("Word: " + patternMatched.getMarkedWord() + " ; Index: " + index);
+				String[] splitSent = sentence.split(" ");
 
-			String resSent = "";
-			for (String chunk : splitSent) {
-				resSent += chunk + " ";
+				String resSent = "";
+				for (int i = 0; i < splitSent.length; ++i) {
+					if (i == index)
+						resSent += "[" + patternMatched.getMarkedWord() + "/" + patternMatched.getTreeId() + "]";
+					else
+						resSent += splitSent[i];
+					if (i < splitSent.length - 1)
+						resSent += " ";
+					else
+						resSent += ".";
+				}
+
+				result.setResultSentence(resSent);
+			} else {
+				result = null;
 			}
-
-			result.setResultSentence(resSent);
 		} else {
-			result = null;
+			System.err.println("SURPRISE! more than one pattern matched...");
 		}
 
 		return result;

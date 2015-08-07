@@ -35,7 +35,7 @@ public class AnnotationResult {
 	void setOrigSentence(String origSentence) {
 		this.origSentence = origSentence;
 	}
-	public String getResultSentence() {
+	public String getAnnotatedSentence() {
 		return annotatedSentence;
 	}
 	void setResultSentence(String resultSentence) {

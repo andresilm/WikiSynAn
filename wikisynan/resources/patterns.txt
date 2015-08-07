@@ -1,0 +1,3 @@
+n0N1-Canonical|nsubj(<N>,N);cop(<N>,was/V)
+beta-n0Vpn1|vmod(N,<V>);aux(<V>,to/TO);prep-on(<V>,N)
+

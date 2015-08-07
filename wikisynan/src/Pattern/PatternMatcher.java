@@ -13,15 +13,19 @@ public class PatternMatcher {
 		patternList = new ArrayList<Pattern>();
 	}
 
-	public Pattern findMatchForParsing(List<Dependency> deps) {
-
+	public List<Pattern> findMatchForParsing(List<Dependency> deps) {
+		List<Pattern> matches = new ArrayList();
 		for (Pattern p : patternList) {
 			System.err.println("Parse pattern: "+p.toString());
 			if (p.matchesWithParsing(deps))
-				return p;
+				matches.add(p);
 		}
-		System.err.println("No pattern matched!. Returning null");
-		return null;
+		
+		return matches;
+	}
+	
+	public void addPattern(Pattern p) {
+		this.patternList.add(p);
 	}
 
 	public void loadFromFile(String filename) throws FileNotFoundException {
