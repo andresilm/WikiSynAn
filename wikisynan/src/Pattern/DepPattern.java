@@ -15,6 +15,7 @@ public class DepPattern {
 	final static int DEP = 1;
 
 	public DepPattern(String pattern) {
+
 		String[] split1 = pattern.split("\\(");
 		setReln(split1[0]);
 
@@ -23,30 +24,29 @@ public class DepPattern {
 		String govData[] = parseNode(split2[0], GOV);
 		setGovIsVar(govData[0] == ""); // isVar ==> gov == null && govPOS !=
 										// null
-		
+
 		setGov(govData[0]);
 		setGovPOS(govData[1]);
-		
+
 		String depData[] = parseNode(split2[1].substring(0, split2[1].length() - 1), DEP);
 		setDepIsVar(depData[0] == ""); // isVar ==> dep == null && depPOS !=
 										// null
-		
-		
+
 		setDep(depData[0]);
 		setDepPOS(depData[1]);
 
 	}
 
 	private String[] parseNode(String node, int nodeType) {
-	
+
 		String[] nodeData = new String[2];
 		if (node.contains("/")) {// node = "word/tag"
-		
+
 			String[] splitNode = node.split("\\/");
 			nodeData = splitNode;
 
 		} else {// POS tag only => is var
-		//	System.out.println(node);
+			// System.out.println(node);
 			nodeData[1] = node;// POS tag
 			nodeData[0] = "";
 
@@ -63,11 +63,12 @@ public class DepPattern {
 	}
 
 	public boolean matchesWithDependency(Dependency dep) {
-		
-		return dep.getReln().equals(this.getReln()) && (dep.getGovPOS().equals(this.getGovPOS()))
-				&& (dep.getDepPOS().equals(this.getDepPOS())) && ((!this.isGovIsVar())? this.getGov().equals(dep.getGov()) : true)
-				&& ((!this.isDepIsVar())? this.getDep().equals(dep.getDep()) : true);
-		
+
+		return dep.getReln().equals(this.getReln()) && (dep.getGovNormalizedPOSTag().equals(this.getGovPOS()))
+				&& (dep.getDepNormalizedPOSTag().equals(this.getDepPOS()))
+				&& IMPLIES(!this.isGovIsVar(),((this.getGovPOS().equals("V"))?this.getGov().equals(dep.getGovLemmatized()):this.getGov().equals(dep.getGov())))
+				&& IMPLIES(!this.isDepIsVar(),((this.getDepPOS().equals("V"))?this.getDep().equals(dep.getDepLemmatized()):this.getDep().equals(dep.getDep())));
+
 	}
 
 	public String getMarkedInstantation(Dependency dep) {
@@ -94,8 +95,8 @@ public class DepPattern {
 
 	@Override
 	public String toString() {
-		return getReln() + "(" + ((!getGov().equals("")) ? (getGov() + "/") : "") + ((marked == GOV) ? "<" : "") + getGovPOS()
-				+ ((marked == GOV) ? ">" : "") + "," + ((!getDep().equals("")) ? (getDep() + "/") : "")
+		return getReln() + "(" + ((!getGov().equals("")) ? (getGov() + "/") : "") + ((marked == GOV) ? "<" : "")
+				+ getGovPOS() + ((marked == GOV) ? ">" : "") + "," + ((!getDep().equals("")) ? (getDep() + "/") : "")
 				+ ((marked == DEP) ? "<" : "") + getDepPOS() + ((marked == DEP) ? ">" : "") + ")";
 	}
 

@@ -1,4 +1,4 @@
-package Testing;
+package UnitTest;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import Pattern.PatternMatcher;
 public class Tests {
 	public static void main(String[] args) throws FileNotFoundException {
 		DepPattern depp1 = new DepPattern("nsubj(<N>,N)");
-		DepPattern depp2 = new DepPattern("cop(<N>,was/V)");
+		DepPattern depp2 = new DepPattern("cop(<N>,be/V)");
 
 		DepPattern depp3 = new DepPattern("vmod(N,<V>)");
 		DepPattern depp4 = new DepPattern("aux(<V>, to/TO)");
@@ -45,13 +45,11 @@ public class Tests {
 
 		System.out.println(depp1.matchesWithDependency(dep1));
 		System.out.println(depp2.matchesWithDependency(dep2));
-		System.out.println(depp2.matchesWithDependency(dep1));
-		System.out.println(depp1.matchesWithDependency(dep2));
-
+		
 		System.out.println("=== Test 2 ===");
 		String[] depList1 = new String[2];
 		depList1[0] = "nsubj(<N>,N)";
-		depList1[1] = "cop(<N>,was/V)";
+		depList1[1] = "cop(<N>,be/V)";
 		Pattern p1 = new Pattern(depList1, "n0N1-Canonical");
 		DepPattern[] depList2 = new DepPattern[3];
 		depList2[0] = depp3;

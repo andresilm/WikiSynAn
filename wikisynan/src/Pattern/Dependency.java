@@ -16,32 +16,65 @@ public class Dependency {
 	private int govIndex;
 	private int depIndex;
 	
+
+	private static Lemmatizer lemmatizer;
+
+	static {
+		lemmatizer = Lemmatizer.getInstance();
+	}
+
+	
+	
 	public Dependency(String depStr) {
 		String[] split1 = depStr.split("\\(");
 		setReln(split1[0]);
 		
 		String[] split2 = split1[1].split("\\,");
-		setGov(lemmatize(split2[0].split("\\/")[0]));
+		setGov(split2[0].split("\\/")[0].split("\\-")[0]);
 		
-		setGovPOS(normalizePOS(split2[0].split("\\/")[1]));
+		setGovPOS(split2[0].split("\\/")[1]);
 		
 		String[] split3 = split2[1].split("\\)");
-		setDep(lemmatize(split3[0].split("\\/")[0]));
+		setDep(split3[0].split("\\/")[0].split("\\-")[0]);
 		
-		setDepPOS(normalizePOS(split3[0].split("\\/")[1]));
+		setDepPOS(split3[0].split("\\/")[1]);
 	}
 	
 	public Dependency(TypedDependency typDep) {
 		reln = typDep.reln().toString();
 		gov = typDep.gov().originalText();
 		dep = typDep.dep().originalText();
-		govPOS =normalizePOS( typDep.gov().tag());
-		depPOS = normalizePOS(typDep.dep().tag());
+		govPOS =typDep.gov().tag();
+		depPOS = typDep.dep().tag();
 		govIndex = typDep.gov().index();
 		depIndex = typDep.dep().index();
 	}
 	
-	public static String normalizePOS(String tag) {
+	public String getGovNormalizedPOSTag() {
+		
+			return normalizePOS(this.govPOS);
+		
+			
+		
+	}
+	
+	public String getDepNormalizedPOSTag() {
+		
+		return normalizePOS(this.depPOS);
+	}
+	
+	public String getDepLemmatized() {
+		return lemmatize(this.dep);
+	}
+	
+	public String getGovLemmatized() {
+		return lemmatize(this.gov);
+	}
+		
+	
+
+	
+	private static String normalizePOS(String tag) {
 	       String norm = "";
 	        if (tag != null && !tag.equals("")) {
 	            if (tag.equals("NNP") || tag.equals("NNS") || tag.equals("NNPS") || tag.equals("PRP") || tag.equals("WP") || tag.equals("NN") || tag.equals("NP")) {
@@ -55,9 +88,12 @@ public class Dependency {
 	        return norm;		
 	}
 	private String lemmatize(String word) {
-		String[] indexSep = word.split("\\-");
+		/*String[] indexSep = word.split("\\-");
 		this.setGovIndex(Integer.valueOf(indexSep[1]));
-		return indexSep[0];
+		
+		return indexSep[0];*/
+		
+		return lemmatizer.getLemma(word);
 		
 	}
 
