@@ -4,6 +4,7 @@ import java.util.List;
 
 import edu.stanford.nlp.trees.TypedDependency;
 
+
 public class Dependency {
 	private String reln;
 	private String gov;

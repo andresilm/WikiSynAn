@@ -4,14 +4,14 @@ import java.util.List;
 
 import Util.Triple;
 
-public class Annotation {
+public class SentenceAnnotation {
 	private String origSentence;
 	private String annotatedSentence = "";
 	private List<Triple<String,Integer,String>> wordsAnnotated;
 	
 	
 	
-	public Annotation(String origSentence) {
+	public SentenceAnnotation(String origSentence) {
 		this.origSentence = origSentence;
 		wordsAnnotated = new ArrayList();
 	}

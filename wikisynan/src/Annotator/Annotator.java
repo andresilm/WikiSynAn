@@ -20,8 +20,8 @@ public class Annotator {
 
 	}
 
-	public Annotation annotateSentence(String sentence) {
-		Annotation result = new Annotation(sentence);
+	public SentenceAnnotation annotateSentence(String sentence) {
+		SentenceAnnotation result = new SentenceAnnotation(sentence);
 
 		parser.analyzeSentence(sentence);
 
@@ -30,6 +30,7 @@ public class Annotator {
 
 		
 		for (TypedDependency dep : deps) {
+			System.err.println(dep);
 			myDeps.add(new Dependency(dep));
 			
 		}

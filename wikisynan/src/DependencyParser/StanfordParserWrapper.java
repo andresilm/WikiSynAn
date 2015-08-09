@@ -3,6 +3,7 @@ package DependencyParser;
 // Note : The command line alternative is
 
 import edu.stanford.nlp.ling.CoreLabel;
+
 import edu.stanford.nlp.ling.IndexedWord;
 import edu.stanford.nlp.parser.lexparser.LexicalizedParser;
 import edu.stanford.nlp.process.CoreLabelTokenFactory;
@@ -80,9 +81,11 @@ public class StanfordParserWrapper {
         List<CoreLabel> tokens = tokenize(this.sentence);
 
         Tree parsed_tree = parser.apply(tokens);
+        
 
         gramStructure = gsf.newGrammaticalStructure(parsed_tree);
         this.allDependencies = gramStructure.typedDependenciesCollapsedTree();
+        
 
     }
 

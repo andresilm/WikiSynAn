@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import Annotator.Annotation;
+import Annotator.SentenceAnnotation;
 import Annotator.Annotator;
 import DependencyParser.StanfordParserWrapper;
 import Pattern.DepPattern;
@@ -71,7 +71,7 @@ public class Tests {
 		// pMatcher.addPattern(p2);
 		Annotator annotator = new Annotator(pMatcher);
 
-		Annotation result = annotator.annotateSentence(
+		SentenceAnnotation result = annotator.annotateSentence(
 				"Neil Alden Armstrong (August 5, 1930 – August 25, 2012) was an American astronaut and the first person to walk on the Moon.");
 		if (result != null)
 			System.out.print(result.getAnnotatedSentence());
