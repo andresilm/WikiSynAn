@@ -40,7 +40,7 @@ public class Lemmatizer {
 				lemma += token.get(LemmaAnnotation.class) + " ";
 			}
 		}
-		System.err.println("Lemmatization of " + text + " is " + lemma);
+		//System.err.println("Lemmatization of " + text + " is " + lemma);
 		return lemma;
 	}
 

@@ -27,7 +27,7 @@ public class Tests {
 
 		Dependency dep3 = new Dependency("vmod(person-5/NN,walk-7/VB)");
 		Dependency dep4 = new Dependency("aux(walk-7/VB,to-6/TO)");
-		Dependency dep5 = new Dependency("prep-on(walk-7/VB,moon-8/NNP)");
+		Dependency dep5 = new Dependency("prep_on(walk-7/VB,moon-8/NNP)");
 
 		List<Dependency> deps = new ArrayList();
 		deps.add(dep1);

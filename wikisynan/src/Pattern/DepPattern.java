@@ -63,11 +63,25 @@ public class DepPattern {
 	}
 
 	public boolean matchesWithDependency(Dependency dep) {
+		boolean sameRelName = dep.getReln().equals(this.getReln());
 
-		return dep.getReln().equals(this.getReln()) && (dep.getGovNormalizedPOSTag().equals(this.getGovPOS()))
-				&& (dep.getDepNormalizedPOSTag().equals(this.getDepPOS()))
-				&& IMPLIES(!this.isGovIsVar(),((this.getGovPOS().equals("V"))?this.getGov().equals(dep.getGovLemmatized()):this.getGov().equals(dep.getGov())))
-				&& IMPLIES(!this.isDepIsVar(),((this.getDepPOS().equals("V"))?this.getDep().equals(dep.getDepLemmatized()):this.getDep().equals(dep.getDep())));
+		boolean sameGovPOSTag = dep.getGovNormalizedPOSTag().equals(this.getGovPOS());
+
+		boolean sameDepPOSTag = dep.getDepNormalizedPOSTag().equals(this.getDepPOS());
+		boolean depIsVarOrSameWord = IMPLIES(!this.isGovIsVar(), ((this.getGovPOS().equals("V"))
+				? this.getGov().equals(dep.getGovLemmatized()) : this.getGov().equals(dep.getGov())));
+		boolean GovIsVarOrSameWord = IMPLIES(!this.isGovIsVar(), ((this.getGovPOS().equals("V"))
+				? this.getGov().equals(dep.getGovLemmatized()) : this.getGov().equals(dep.getGov())));
+		
+		/*System.err.println("Pattern matching: " + dep.toString() + " with " +this.toString());
+		System.err.println(sameRelName);
+		System.err.println(sameGovPOSTag);
+		System.err.println(sameDepPOSTag);
+		System.err.println(depIsVarOrSameWord);
+		System.err.println(GovIsVarOrSameWord);
+		System.err.println("END Pattern matching: ");
+*/
+		return sameRelName && sameGovPOSTag && sameDepPOSTag && depIsVarOrSameWord && GovIsVarOrSameWord;
 
 	}
 

@@ -30,7 +30,7 @@ public class Annotator {
 
 		
 		for (TypedDependency dep : deps) {
-			System.err.println(dep);
+		//	System.err.println(dep);
 			myDeps.add(new Dependency(dep));
 			
 		}
