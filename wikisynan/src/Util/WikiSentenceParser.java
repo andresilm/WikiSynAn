@@ -22,9 +22,9 @@ public class WikiSentenceParser {
     Scanner sourceScanner;
     BufferedReader sourceBuff;
 
-    public WikiSentenceParser(GZIPInputStream wikiSource) throws IOException {
+    public WikiSentenceParser(Scanner sourceScanner) throws IOException {
 
-        sourceScanner = new Scanner(wikiSource);
+        this.sourceScanner = sourceScanner;
         
 
         sourceScanner.useDelimiter("(?<=[.!?])\\s+|\n");
