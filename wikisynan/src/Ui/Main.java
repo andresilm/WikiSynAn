@@ -1,4 +1,4 @@
-package ui;
+package Ui;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
