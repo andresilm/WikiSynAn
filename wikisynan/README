@@ -1,0 +1,13 @@
+=== Wikpedia Syntactic Annotator README file ===
+
+== Running the tests
+java -jar <name of this exported jar> tests.Tests
+
+== How to use it 
+java -jar <name of this exported jar> ui.Main
+
+== Building and adding a patterns file
+A pattern is a line with the following grammar:
+patt_name '|' <dependency_pattern_1>';' ... ';'<dependency_pattern_N>
+Example:
+beta-n0Vpn1|vmod(N,<V>);aux(<V>,to/TO);prep_on(<V>,N)
