@@ -1,8 +1,8 @@
-package Annotator;
+package annotator;
 import java.util.ArrayList;
 import java.util.List;
 
-import Util.Triple;
+import util.Triple;
 
 public class SentenceAnnotation {
 	private String origSentence;

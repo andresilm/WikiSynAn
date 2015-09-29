@@ -1,4 +1,4 @@
-package Ui;
+package ui;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -6,11 +6,11 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.zip.GZIPInputStream;
 
-import Annotator.Annotator;
-import Annotator.SentenceAnnotation;
-import Pattern.PatternMatcher;
-import Pattern.Pattern;
-import Util.WikiSentenceParser;
+import annotator.Annotator;
+import annotator.SentenceAnnotation;
+import pattern.Pattern;
+import pattern.PatternMatcher;
+import util.WikiSentenceParser;
 
 
 public class Main {

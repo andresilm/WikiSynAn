@@ -1,4 +1,4 @@
-package DependencyParser;
+package dependency_parser;
 
 // Note : The command line alternative is
 

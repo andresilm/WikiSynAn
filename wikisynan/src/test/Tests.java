@@ -1,17 +1,17 @@
-package UnitTest;
+package test;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import Annotator.SentenceAnnotation;
-import Annotator.Annotator;
-import DependencyParser.StanfordParserWrapper;
-import Pattern.DepPattern;
-import Pattern.Dependency;
-import Pattern.Pattern;
-import Pattern.PatternMatcher;
+import annotator.Annotator;
+import annotator.SentenceAnnotation;
+import dependency_parser.StanfordParserWrapper;
+import pattern.DepPattern;
+import pattern.Dependency;
+import pattern.Pattern;
+import pattern.PatternMatcher;
 
 public class Tests {
 	public static void main(String[] args) throws FileNotFoundException {

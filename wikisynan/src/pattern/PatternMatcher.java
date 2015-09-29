@@ -1,4 +1,4 @@
-package Pattern;
+package pattern;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

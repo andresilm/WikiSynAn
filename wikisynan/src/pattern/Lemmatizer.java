@@ -2,7 +2,7 @@
  * https://github.com/sandeepchawla/nlp/blob/master/src/nlp/hwz/dict/corenlp/Lemmatizer.java
  */
 
-package Pattern;
+package pattern;
 import java.util.Properties;
 
 import edu.stanford.nlp.ling.CoreAnnotations.LemmaAnnotation;

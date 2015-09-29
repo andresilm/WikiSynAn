@@ -3,22 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Util;
+package util;
 
 /**
  *
  * @author aluna
  */
-public class Triple<X,Y,Z> { 
+public class Pair<X,Y> { 
   private X x; 
   private Y y; 
-  private Z z;
- 
+
   
-  public Triple(X x, Y y, Z z) { 
+  public Pair(X x, Y y) { 
     this.x = x; 
     this.y = y; 
-    this.z = z;
     
   } 
 
@@ -50,21 +48,5 @@ public class Triple<X,Y,Z> {
         this.y = y;
     }
 
-    /**
-     * @return the z
-     */
-    public Z getZ() {
-        return z;
-    }
 
-    /**
-     * @param z the z to set
-     */
-    public void setZ(Z z) {
-        this.z = z;
-    }
-
-    
-
-    
 } 

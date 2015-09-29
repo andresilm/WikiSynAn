@@ -1,14 +1,14 @@
-package Annotator;
+package annotator;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import DependencyParser.StanfordParserWrapper;
-import Pattern.Dependency;
-import Pattern.Pattern;
-import Pattern.PatternMatcher;
+import dependency_parser.StanfordParserWrapper;
 import edu.stanford.nlp.trees.TypedDependency;
+import pattern.Dependency;
+import pattern.Pattern;
+import pattern.PatternMatcher;
 
 public class Annotator {
 	private StanfordParserWrapper parser;
