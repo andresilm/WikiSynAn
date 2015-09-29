@@ -4,7 +4,8 @@
 java -jar <name of this exported jar> tests.Tests
 
 == How to use it 
-java -jar <name of this exported jar> ui.Main
+java -jar <name of this exported jar> ui.Main <name of input file>
+where <name of input file> is a file with sentences separated by '\n'
 
 == Building and adding a patterns file
 A pattern is a line with the following grammar:
