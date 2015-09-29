@@ -15,11 +15,11 @@ import util.WikiSentenceParser;
 
 public class Main {
 	public static void main(String[] args) throws FileNotFoundException, IOException {
-		if (args.length == 4) {
-			String patternListFilename = args[2];
-			String inputFilename = args[3];
+		if (args.length == 2) {
+			String patternListFilename = args[0];
+			String inputFilename = args[1];
 			
-			Scanner gzipSource = new Scanner(new GZIPInputStream(new FileInputStream(inputFilename)));
+			Scanner gzipSource = new Scanner(new FileInputStream(inputFilename));
 			PatternMatcher pMatcher = new PatternMatcher();
 			pMatcher.loadFromFile(patternListFilename);
 			annotateSource(gzipSource,pMatcher);

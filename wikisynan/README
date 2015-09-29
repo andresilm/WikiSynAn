@@ -1,11 +1,16 @@
 === Wikpedia Syntactic Annotator README file ===
 
+== Compilling
+Do a compilation with all the Maven dependencies included:
+mvn assembly:assembly -DdescriptorId=jar-with-dependencies
+mvn compiler:compile
+
+
 == Running the tests
 java -jar <name of this exported jar> tests.Tests
 
 == How to use it 
-java -jar <name of this exported jar> ui.Main <name of input file>
-where <name of input file> is a file with sentences separated by '\n'
+java -jar <name of this exported jar> ui.Main <patterns_source> <sentences_to_annotate>
 
 == Building and adding a patterns file
 A pattern is a line with the following grammar:
